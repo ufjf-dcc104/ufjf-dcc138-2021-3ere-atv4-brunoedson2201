@@ -16,4 +16,10 @@ export default class Cena { //é responsável por desenhar elementos na tela em 
     adicionar(sprite){
         this.sprites.push(sprite);
     }
+    passo(dt){
+        for (const sprite of this.sprites) {
+            sprite.passo(dt);
+            
+        }
+    }
 }
