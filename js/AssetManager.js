@@ -3,6 +3,19 @@ export default class AssetManager {
         this.aCarregar = 0;
         this.carregadas = 0;
         this.imagens = new Map();
+        this.audios = new Map();
+    }
+
+    carregaAudio(chave, source) {
+        const audio = new Audio();
+        audio.addEventListener("canplay", () => {
+            console.log(`Áudio ${this.carregadas}/${this.aCarregar} carregada!`);
+            this.carregadas++;
+        });
+
+        audio.src = source;
+        this.audios.set(chave, audio);
+        this.aCarregar++;
     }
 
     carregaImagem(chave, source) {
@@ -18,6 +31,10 @@ export default class AssetManager {
     }
 
     img(chave){
+        return this.audio.get(chave);
+    }
+
+    audio(chave){
         return this.imagens.get(chave);
     }
 
