@@ -1,4 +1,3 @@
-
 export default class Cena { //é responsável por desenhar elementos na tela em uma animação
     constructor(canvas, assets = null) {
         this.canvas = canvas;
@@ -13,9 +12,11 @@ export default class Cena { //é responsável por desenhar elementos na tela em 
     desenhar() {
         this.ctx.fillStyle = "grey";
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-        for (let s = 0; s < this.sprites.length; s++) {
-            const sprite = this.sprites[s];
-            sprite.desenhar(this.ctx);
+        if (this.assets.acabou()) {
+            for (let s = 0; s < this.sprites.length; s++) {
+                const sprite = this.sprites[s];
+                sprite.desenhar(this.ctx);
+            }
         }
         this.ctx.fillStyle = "yellow";
         this.ctx.fillText(this.assets?.progresso(), 10, 20);
@@ -24,8 +25,10 @@ export default class Cena { //é responsável por desenhar elementos na tela em 
         this.sprites.push(sprite);
     }
     passo(dt) {
-        for (const sprite of this.sprites) {
-            sprite.passo(dt);
+        if (this.assets.acabou()) {
+            for (const sprite of this.sprites) {
+                sprite.passo(dt);
+            }
         }
     }
     quadro(t) {
@@ -61,18 +64,18 @@ export default class Cena { //é responsável por desenhar elementos na tela em 
             }
         }
     }
-    quandoColidir(a, b){
-        if(!this.aRemover.includes(a)){
+    quandoColidir(a, b) {
+        if (!this.aRemover.includes(a)) {
             this.aRemover.push(a);
         }
-        if(!this.aRemover.includes(b)){
+        if (!this.aRemover.includes(b)) {
             this.aRemover.push(b);
         }
     }
-    removerSprites(){
+    removerSprites() {
         for (const alvo of this.aRemover) {
             const idx = this.sprites.indexOf(alvo);
-            if(idx >= 0){
+            if (idx >= 0) {
                 this.sprites.splice(idx, 1);
             }
         }
