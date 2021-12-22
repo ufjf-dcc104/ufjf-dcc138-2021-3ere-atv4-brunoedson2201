@@ -3,7 +3,7 @@ export default class Sprite{ //responsável por modelar algo que se move na tela
         this.x = x;
         this.y = y;
         this.vx = vx;
-        this.yx = vx;
+        this.vy = vy;
         this.w = w;
         this.h = h;
         this.color = color;
