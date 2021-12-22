@@ -73,5 +73,6 @@ export default class Cena { //é responsável por desenhar elementos na tela em 
                 this.sprites.splice(idx, 1);
             }
         }
+        this.aRemover = [];
     }
 }
