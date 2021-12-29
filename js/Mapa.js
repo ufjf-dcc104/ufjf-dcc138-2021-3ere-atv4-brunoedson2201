@@ -25,6 +25,14 @@ export default class Mapa {
                         ctx.strokeStyle = "black";
                         ctx.strokeRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
                         break;
+                    
+                    case 2:
+                        ctx.fillStyle = "red";
+                        ctx.lineWidth = 1;
+                        ctx.fillRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
+                        ctx.strokeStyle = "yellow";
+                        ctx.strokeRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
+                        break;
 
                     default:
                         ctx.fillStyle = "black";
@@ -43,7 +51,7 @@ export default class Mapa {
         this.LINHAS = modelo.length;
         this.COLUNAS = modelo[0]?.length ?? 0;
         this.tiles = [];
-        
+
         for (let l = 0; l < this.LINHAS; l++) {
             this.tiles[l] = [];
              for (let c = 0; c < this.COLUNAS; c++) {
