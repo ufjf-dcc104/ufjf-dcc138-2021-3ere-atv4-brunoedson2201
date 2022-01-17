@@ -6,7 +6,7 @@ export default class Mapa {
         this.tiles = [];
 
         for (let l = 0; l < this.LINHAS; l++) {
-           this.tiles[l] = [];
+            this.tiles[l] = [];
             for (let c = 0; c < this.COLUNAS; c++) {
                 this.tiles[l][c] = 0;
             }
@@ -14,49 +14,45 @@ export default class Mapa {
         this.cena = null;
     }
 
-    desenhar(ctx){
+    desenhar(ctx) {
         for (let l = 0; l < this.LINHAS; l++) {
             for (let c = 0; c < this.COLUNAS; c++) {
                 switch (this.tiles[l][c]) {
                     case 1:
                         ctx.fillStyle = "grey";
                         ctx.lineWidth = 1;
-                        ctx.fillRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
                         ctx.strokeStyle = "black";
-                        ctx.strokeRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
                         break;
-                    
+
                     case 2:
                         ctx.fillStyle = "red";
                         ctx.lineWidth = 1;
-                        ctx.fillRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
                         ctx.strokeStyle = "yellow";
-                        ctx.strokeRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
                         break;
 
                     default:
                         ctx.fillStyle = "black";
                         ctx.lineWidth = 1;
-                        ctx.fillRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
                         ctx.strokeStyle = "grey";
-                        ctx.strokeRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
                 }
+                ctx.fillRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
+                ctx.strokeRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
 
             }
         }
 
     }
 
-    carregaMapa(modelo){
+    carregaMapa(modelo) {
         this.LINHAS = modelo.length;
         this.COLUNAS = modelo[0]?.length ?? 0;
         this.tiles = [];
 
         for (let l = 0; l < this.LINHAS; l++) {
             this.tiles[l] = [];
-             for (let c = 0; c < this.COLUNAS; c++) {
-                 this.tiles[l][c] = modelo[l][c];
-             }
-         }
+            for (let c = 0; c < this.COLUNAS; c++) {
+                this.tiles[l][c] = modelo[l][c];
+            }
+        }
     }
 }
