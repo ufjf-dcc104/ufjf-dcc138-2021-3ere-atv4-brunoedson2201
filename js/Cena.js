@@ -26,6 +26,7 @@ export default class Cena { //é responsável por desenhar elementos na tela em 
         this.ctx.fillText(this.assets?.progresso(), 10, 20);
     }
     adicionar(sprite) {
+        sprite.cena = this;
         this.sprites.push(sprite);
     }
     passo(dt) {
