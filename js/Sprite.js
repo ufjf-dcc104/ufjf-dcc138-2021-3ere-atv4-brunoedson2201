@@ -22,11 +22,18 @@ export default class Sprite { //responsável por modelar algo que se move na tel
             this.cena.mapa.SIZE,
         )
     }
-    passo(dt) {
+    controlar(dt){
+
+    }
+    mover(dt){
         this.x = this.x + this.vx * dt;
         this.y = this.y + this.vy * dt;
         this.mx = Math.floor(this.x / this.cena.mapa.SIZE);
         this.my = Math.floor(this.y / this.cena.mapa.SIZE);
+    }
+    passo(dt) {
+        this.controlar(dt);
+        this.mover(dt);
     }
     colidiuCom(outro) {
         return !(
