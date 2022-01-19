@@ -6,7 +6,7 @@ export default class Sprite { //responsável por modelar algo que se move na tel
         this.vy = vy;
         this.w = w;
         this.h = h;
-        this.color = color; 3
+        this.color = color;
         this.cena = null;
         this.mx = 0;
         this.my = 0;
@@ -33,7 +33,28 @@ export default class Sprite { //responsável por modelar algo que se move na tel
             (this.x - this.w / 2 > outro.x + outro.w / 2) ||
             (this.x + this.w / 2 < outro.x - outro.w / 2) ||
             (this.y - this.h / 2 > outro.y + outro.h / 2) ||
-            (this.y + this.h / 2 < outro.y - outro.y / 2)
+            (this.y + this.h / 2 < outro.y - outro.h / 2)
         );
+    }
+    aplicaRestricoes(dt) {
+        const SIZE = this.cena.mapa.SIZE;
+        if (this.vx > 0) {
+            const pmx = this.mx + 1;
+            const pmy = this.my;
+            if (this.cena.mapa.tiles[pmy][pmx] != 0) {
+                const tile = {
+                    x: pmx * SIZE + SIZE / 2,
+                    y: pmy * SIZE + SIZE / 2,
+                    w: SIZE,
+                    h: SIZE
+                }
+                this.cena.ctx.strokeStyle = "white";
+                this.cena.ctx.strokeRect(tile.x - SIZE / 2, tile.y - SIZE / 2, SIZE, SIZE);
+                if(this.colidiuCom(tile)){
+                    this.vx = 0;
+                    this.x = tile.x - tile.w/2 - this.w/2-1;
+                }
+            }
+        }
     }
 }
