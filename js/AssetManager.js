@@ -31,11 +31,11 @@ export default class AssetManager {
     }
 
     img(chave){
-        return this.audio.get(chave);
+        return this.imagens.get(chave);
     }
 
     audio(chave){
-        return this.imagens.get(chave);
+        return this.audios.get(chave);
     }
 
     progresso() {
