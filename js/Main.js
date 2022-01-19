@@ -39,7 +39,7 @@ document.addEventListener("keydown", (e) => {
             cena1.parar();
             break;
         case "c":
-            assets.audio("moeda").play;
+            assets.audio("moeda").play();
             break;
     }
 });
