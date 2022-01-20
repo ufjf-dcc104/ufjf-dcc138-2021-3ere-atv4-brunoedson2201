@@ -18,7 +18,6 @@ export default class InputManager {
             if(comando){
                 that.comandos.set(comando, true);
             }
-            console.log(that.comandos.get(comando));
         });
         
         addEventListener("keyup", function(e){
@@ -26,7 +25,6 @@ export default class InputManager {
             if(comando){
                 that.comandos.set(comando, false);
             }
-            console.log(that.comandos.get(comando));
         });
     }
 }
