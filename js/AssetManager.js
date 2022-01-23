@@ -7,18 +7,6 @@ export default class AssetManager {
         this.mixer = mixer;
     }
 
-    carregaAudio(chave, source) {
-        const audio = new Audio();
-        audio.addEventListener("loadeddata", () => {
-            console.log(`Áudio ${this.carregadas}/${this.aCarregar} carregada!`);
-            this.carregadas++;
-        });
-
-        audio.src = source;
-        this.audios.set(chave, audio);
-        this.aCarregar++;
-    }
-
     carregaImagem(chave, source) {
         const img1 = new Image();
         img1.addEventListener("load", () => {
@@ -28,6 +16,18 @@ export default class AssetManager {
 
         img1.src = source;
         this.imagens.set(chave, img1);
+        this.aCarregar++;
+    }
+
+    carregaAudio(chave, source) {
+        const audio = new Audio();
+        audio.addEventListener("loadeddata", () => {
+            console.log(`Áudio ${this.carregadas}/${this.aCarregar} carregada!`);
+            this.carregadas++;
+        });
+
+        audio.src = source;
+        this.audios.set(chave, audio);
         this.aCarregar++;
     }
 
@@ -41,7 +41,7 @@ export default class AssetManager {
 
     progresso() {
         if (this.aCarregar > 0) {
-            return `${(this.carregadas / this.aCarregar * 100).toFixed(2)}%`;
+            return `${(this.carregadas / this.aCarregar * 100)}%`;
         }
         return "Nada a carregar";
     }

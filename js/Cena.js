@@ -1,5 +1,7 @@
+import Sprite from "./Sprite.js";
+
 export default class Cena { //é responsável por desenhar elementos na tela em uma animação
-    constructor(canvas, assets = null) {
+    constructor(canvas, assets = null, mapa = null) {
         this.canvas = canvas;
         this.ctx = canvas.getContext("2d");
         this.sprites = [];
@@ -8,7 +10,7 @@ export default class Cena { //é responsável por desenhar elementos na tela em 
         this.dt = 0;
         this.idAnim = null;
         this.assets = assets;
-        this.mapa = null;
+        this.configuraMapa(mapa);
     }
     desenhar() {
         this.ctx.fillStyle = "lightblue";
@@ -60,18 +62,20 @@ export default class Cena { //é responsável por desenhar elementos na tela em 
         this.t0 = null;
         this.dt = 0;
     }
+
     checaColisao() {
         for (let a = 0; a < this.sprites.length - 1; a++) {
             const spriteA = this.sprites[a];
             for (let b = a + 1; b < this.sprites.length; b++) {
                 const spriteB = this.sprites[b];
                 if (spriteA.colidiuCom(spriteB)) {
+                    this.assets.play("colisao");
                     this.quandoColidir(spriteA, spriteB);
                 }
             }
         }
     }
-    quandoColidir(a, b) {
+    quandoColidir(a, b) {        
         if (!this.aRemover.includes(a)) {
             this.aRemover.push(a);
         }

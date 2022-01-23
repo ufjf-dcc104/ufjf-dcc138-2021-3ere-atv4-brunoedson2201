@@ -24,7 +24,7 @@ export default class Sprite { //responsável por modelar algo que se move na tel
     desenhar(ctx) {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x - this.w / 2, this.y - this.h / 2, this.w, this.h);
-        ctx.strokeStyle = "blue";
+        //ctx.strokeStyle = "blue";
         ctx.strokeRect(
             this.mx * this.cena.mapa.SIZE,
             this.my * this.cena.mapa.SIZE,

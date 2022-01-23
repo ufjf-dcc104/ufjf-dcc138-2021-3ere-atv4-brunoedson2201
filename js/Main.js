@@ -15,8 +15,10 @@ assets.carregaImagem("esqueleto", "assets/skelly.png");
 assets.carregaImagem("orc", "assets/orc.png");
 assets.carregaImagem("chao", "assets/chao.png");
 assets.carregaImagem("parede", "assets/parede.png");
+
 assets.carregaAudio("moeda", "assets/coin.wav");
 assets.carregaAudio("boom", "assets/boom.wav");
+assets.carregaAudio("colisao", "assets/colisao.wav");
 
 
 const canvas = document.querySelector("canvas");
@@ -30,10 +32,10 @@ input.configurarTeclado({
     "ArrowDown": "MOVE_BAIXO",
 });
 
-const cena1 = new Cena(canvas, assets);
-
 const mapa1 = new Mapa(14, 20, 32);
 mapa1.carregaMapa(modeloMapa1);
+
+const cena1 = new Cena(canvas, assets, mapa1);
 cena1.configuraMapa(mapa1);
 
 const pc = new Sprite({ x: 50, y: 150, vx: 10 });

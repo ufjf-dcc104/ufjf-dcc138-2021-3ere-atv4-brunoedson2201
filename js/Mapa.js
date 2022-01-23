@@ -12,6 +12,7 @@ export default class Mapa {
             }
         }
         this.cena = null;
+        this.mapa = null;
     }
 
     desenhar(ctx) {
@@ -42,6 +43,19 @@ export default class Mapa {
                             l * this.SIZE,
                             40,
                             32
+                        );
+                        break;
+                    default:
+                        ctx.drawImage(
+                            this.cena.assets.img("chao"),
+                            32,
+                            40,
+                            32,
+                            32,
+                            c * this.SIZE,
+                            l * this.SIZE,
+                            this.SIZE,
+                            this.SIZE
                         );
                         break;
                 }

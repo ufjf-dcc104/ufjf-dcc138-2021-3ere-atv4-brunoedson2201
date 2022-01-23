@@ -1,6 +1,5 @@
 export default class Mixer {
     constructor(numCanais) {
-        this.CANAIS = 0;
         this.configuraCanais(numCanais);
     }
     configuraCanais(numCanais = 10) {
@@ -21,7 +20,7 @@ export default class Mixer {
             if (canal.fim < agora) {
                 canal.audio.src = audio.src;
                 canal.audio.play();
-                canal.fim = agora.getTime() + audio.duration * 1000;
+                canal.fim = agora + audio.duration * 1000;
                 break;
             }
         }
