@@ -18,29 +18,35 @@ export default class Mapa {
         for (let l = 0; l < this.LINHAS; l++) {
             for (let c = 0; c < this.COLUNAS; c++) {
                 switch (this.tiles[l][c]) {
+                    case 0:
+                        ctx.drawImage(
+                            this.cena.assets.img("chao"),
+                            32,
+                            40,
+                            32,
+                            32,
+                            c * this.SIZE,
+                            l * this.SIZE,
+                            this.SIZE,
+                            this.SIZE
+                        );
+                        break;
                     case 1:
-                        ctx.fillStyle = "grey";
-                        ctx.lineWidth = 1;
-                        ctx.strokeStyle = "black";
+                        ctx.drawImage(
+                            this.cena.assets.img("parede"),
+                            32,
+                            20,
+                            40,
+                            32,
+                            c * this.SIZE,
+                            l * this.SIZE,
+                            40,
+                            32
+                        );
                         break;
-
-                    case 2:
-                        ctx.fillStyle = "red";
-                        ctx.lineWidth = 1;
-                        ctx.strokeStyle = "yellow";
-                        break;
-
-                    default:
-                        ctx.fillStyle = "black";
-                        ctx.lineWidth = 1;
-                        ctx.strokeStyle = "grey";
                 }
-                ctx.fillRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
-                ctx.strokeRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
-
             }
         }
-
     }
 
     carregaMapa(modelo) {
