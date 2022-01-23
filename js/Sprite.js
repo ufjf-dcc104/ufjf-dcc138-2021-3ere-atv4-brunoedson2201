@@ -24,13 +24,6 @@ export default class Sprite { //responsável por modelar algo que se move na tel
     desenhar(ctx) {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x - this.w / 2, this.y - this.h / 2, this.w, this.h);
-        //ctx.strokeStyle = "blue";
-        ctx.strokeRect(
-            this.mx * this.cena.mapa.SIZE,
-            this.my * this.cena.mapa.SIZE,
-            this.cena.mapa.SIZE,
-            this.cena.mapa.SIZE,
-        )
     }
     controlar(dt){
 
@@ -57,12 +50,15 @@ export default class Sprite { //responsável por modelar algo que se move na tel
         this.aplicaRestricoesDireita(this.mx + 1, this.my - 1);
         this.aplicaRestricoesDireita(this.mx + 1, this.my);
         this.aplicaRestricoesDireita(this.mx + 1, this.my + 1);
+
         this.aplicaRestricoesEsquerda(this.mx - 1, this.my - 1);
         this.aplicaRestricoesEsquerda(this.mx - 1, this.my);
         this.aplicaRestricoesEsquerda(this.mx - 1, this.my + 1);
+
         this.aplicaRestricoesBaixo(this.mx - 1, this.my + 1);
         this.aplicaRestricoesBaixo(this.mx, this.my + 1);
         this.aplicaRestricoesBaixo(this.mx + 1, this.my + 1);
+
         this.aplicaRestricoesCima(this.mx - 1, this.my - 1);
         this.aplicaRestricoesCima(this.mx, this.my - 1);
         this.aplicaRestricoesCima(this.mx + 1, this.my - 1);
@@ -78,8 +74,6 @@ export default class Sprite { //responsável por modelar algo que se move na tel
                     w: SIZE,
                     h: SIZE
                 }
-                this.cena.ctx.strokeStyle = "white";
-                this.cena.ctx.strokeRect(tile.x - SIZE / 2, tile.y - SIZE / 2, SIZE, SIZE);
                 if (this.colidiuCom(tile)) {
                     this.vx = 0;
                     this.x = tile.x - tile.w / 2 - this.w / 2 - 1;
@@ -97,8 +91,6 @@ export default class Sprite { //responsável por modelar algo que se move na tel
                     w: SIZE,
                     h: SIZE
                 }
-                this.cena.ctx.strokeStyle = "white";
-                this.cena.ctx.strokeRect(tile.x - SIZE / 2, tile.y - SIZE / 2, SIZE, SIZE);
                 if (this.colidiuCom(tile)) {
                     this.vx = 0;
                     this.x = tile.x + tile.w / 2 + this.w / 2 + 1;
@@ -116,8 +108,6 @@ export default class Sprite { //responsável por modelar algo que se move na tel
                     w: SIZE,
                     h: SIZE
                 }
-                this.cena.ctx.strokeStyle = "white";
-                this.cena.ctx.strokeRect(tile.x - SIZE / 2, tile.y - SIZE / 2, SIZE, SIZE);
                 if (this.colidiuCom(tile)) {
                     this.vy = 0;
                     this.y = tile.y - tile.h / 2 - this.h / 2 - 1;
@@ -135,8 +125,7 @@ export default class Sprite { //responsável por modelar algo que se move na tel
                     w: SIZE,
                     h: SIZE
                 }
-                this.cena.ctx.strokeStyle = "white";
-                this.cena.ctx.strokeRect(tile.x - SIZE / 2, tile.y - SIZE / 2, SIZE, SIZE);
+
                 if (this.colidiuCom(tile)) {
                     this.vy = 0;
                     this.y = tile.y + tile.h / 2 + this.h / 2 + 1;

@@ -97,4 +97,19 @@ export default class Cena { //é responsável por desenhar elementos na tela em 
         this.mapa = mapa;
         this.mapa.cena = this;
     }
+
+    adicionaInimigo(){
+        let p = 0, q = 0;
+        while (this.mapa.tiles[p][q] !== 0){
+            p = Math.floor(Math.random() * (18 - 1) + 1);
+            q = Math.floor(Math.random() * (24 - 1) + 1);
+        }
+        const en1 = new Sprite({
+            x: q * 32 + 32 / 2,
+            y: p * 32 + 32 / 2,
+            color: "red"
+        });
+        this.adicionar(en1);
+        setTimeout(that.adicionaInimigo, 10000);
+    }
 }
