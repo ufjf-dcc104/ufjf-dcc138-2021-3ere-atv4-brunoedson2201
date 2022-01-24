@@ -5,6 +5,7 @@ import Mapa from "./Mapa.js";
 import { mapa1 as modeloMapa1 } from "../maps/mapa1.js";
 import Mixer from "./Mixer.js";
 import InputManager from "./InputManager.js";
+import Game from "./Game.js";
 
 const input = new InputManager();
 const mixer = new Mixer(10);
@@ -55,7 +56,11 @@ pc.controlar = function(dt){
         this.vy = 0;
     }
 }
+
+const game = new Game(canvas, assets, input);
+
 cena1.adicionar(pc);
+game.adicionarCena("jogo", cena1);
 
 function perseguePC(dt){
     this.vx = 25 * Math.sign(pc.x - this.x);

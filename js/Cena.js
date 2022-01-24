@@ -11,6 +11,7 @@ export default class Cena { //é responsável por desenhar elementos na tela em 
         this.idAnim = null;
         this.assets = assets;
         this.configuraMapa(mapa);
+        this.game = null;
     }
     desenhar() {
         this.ctx.fillStyle = "lightblue";
