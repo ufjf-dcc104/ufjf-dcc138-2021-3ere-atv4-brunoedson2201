@@ -59,8 +59,9 @@ pc.controlar = function(dt){
 
 const game = new Game(canvas, assets, input);
 
-cena1.adicionar(pc);
 game.adicionarCena("jogo", cena1);
+
+cena1.adicionar(pc);
 
 function perseguePC(dt){
     this.vx = 25 * Math.sign(pc.x - this.x);
@@ -86,15 +87,15 @@ cena1.adicionar(en1);
 cena1.adicionar(new Sprite({ x: 300, y: 190, vy: 10, color: "red", controlar: perseguePC }));
 cena1.adicionar(new Sprite({ x: 450, y: 357, vy: -80, color: "red", controlar: perseguePC }));
 
-cena1.iniciar();
+game.iniciar();
 
 document.addEventListener("keydown", (e) => {
     switch (e.key) {
         case "s":
-            cena1.iniciar();
+            game.iniciar();
             break;
         case "S":
-            cena1.parar();
+            game.parar();
             break;
         case "c":
             assets.play("moeda");

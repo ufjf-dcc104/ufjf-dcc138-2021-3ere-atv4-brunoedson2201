@@ -113,4 +113,5 @@ export default class Cena { //é responsável por desenhar elementos na tela em 
         this.adicionar(en1);
         setTimeout(that.adicionaInimigo, 10000);
     }
+
 }
