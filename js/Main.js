@@ -6,6 +6,8 @@ import { mapa1 as modeloMapa1 } from "../maps/mapa1.js";
 import Mixer from "./Mixer.js";
 import InputManager from "./InputManager.js";
 import Game from "./Game.js";
+import CenaJogo from "./CenaJogo.js";
+import CenaCarregando from "./CenaCarregando.js";
 
 const input = new InputManager();
 const mixer = new Mixer(10);
@@ -33,10 +35,13 @@ input.configurarTeclado({
     "ArrowDown": "MOVE_BAIXO",
 });
 
+const game = new Game(canvas, assets, input);
+
 const mapa1 = new Mapa(18, 24, 32);
 mapa1.carregaMapa(modeloMapa1);
+const cena1 = new CenaJogo(canvas, assets, mapa1);
+const cena0 = new CenaCarregando(canvas, assets, mapa1);
 
-const cena1 = new Cena(canvas, assets, mapa1);
 cena1.configuraMapa(mapa1);
 
 const pc = new Sprite({ x: 50, y: 150, vx: 10 });
@@ -57,8 +62,7 @@ pc.controlar = function(dt){
     }
 }
 
-const game = new Game(canvas, assets, input);
-
+game.adicionarCena("carregando", cena0);
 game.adicionarCena("jogo", cena1);
 
 cena1.adicionar(pc);
