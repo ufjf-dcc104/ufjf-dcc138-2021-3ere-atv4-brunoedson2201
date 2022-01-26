@@ -6,7 +6,7 @@ export default class Cena { //é responsável por desenhar elementos na tela em 
         this.ctx = canvas.getContext("2d");
         this.sprites = [];
         this.aRemover = [];
-        this.t0 = 0;
+        this.t0 = null;
         this.dt = 0;
         this.idAnim = null;
         this.assets = assets;
