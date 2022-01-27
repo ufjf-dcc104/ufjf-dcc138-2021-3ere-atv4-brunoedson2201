@@ -33,15 +33,18 @@ input.configurarTeclado({
     "ArrowRight": "MOVE_DIREITA",
     "ArrowUp": "MOVE_CIMA",
     "ArrowDown": "MOVE_BAIXO",
+    " ": "PROXIMA_CENA",
 });
 
 const game = new Game(canvas, assets, input);
 
 const mapa1 = new Mapa(18, 24, 32);
-mapa1.carregaMapa(modeloMapa1);
-const cena1 = new CenaJogo(canvas, assets, mapa1);
 const cena0 = new CenaCarregando(canvas, assets, mapa1);
+const cena1 = new CenaJogo(canvas, assets, mapa1);
+game.adicionarCena("carregando", cena0);
+game.adicionarCena("jogo", cena1);
 
+mapa1.carregaMapa(modeloMapa1);
 cena1.configuraMapa(mapa1);
 
 const pc = new Sprite({ x: 50, y: 150, vx: 10 });
@@ -61,9 +64,6 @@ pc.controlar = function(dt){
         this.vy = 0;
     }
 }
-
-game.adicionarCena("carregando", cena0);
-game.adicionarCena("jogo", cena1);
 
 cena1.adicionar(pc);
 
