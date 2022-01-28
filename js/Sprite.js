@@ -1,13 +1,14 @@
 export default class Sprite { //responsável por modelar algo que se move na tela
-    constructor({ 
-        x = 100, 
-        y = 100, 
-        w = 20, 
-        h = 20, 
-        color = "white", 
-        vx = 0, 
-        vy = 0, 
-        controlar = () => {}
+    constructor({
+        x = 100,
+        y = 100,
+        w = 20,
+        h = 20,
+        color = "white",
+        vx = 0,
+        vy = 0,
+        controlar = () => { },
+        tags = [],
     } = {}) {
         this.x = x;
         this.y = y;
@@ -20,15 +21,20 @@ export default class Sprite { //responsável por modelar algo que se move na tel
         this.mx = 0;
         this.my = 0;
         this.controlar = controlar;
+        this.tags = new Set();
+        tags.forEach((tag) => {
+            this.tags.add(tag);
+        })
+        this.tags;
     }
     desenhar(ctx) {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x - this.w / 2, this.y - this.h / 2, this.w, this.h);
     }
-    controlar(dt){
+    controlar(dt) {
 
     }
-    mover(dt){
+    mover(dt) {
         this.x = this.x + this.vx * dt;
         this.y = this.y + this.vy * dt;
         this.mx = Math.floor(this.x / this.cena.mapa.SIZE);

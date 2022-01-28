@@ -1,17 +1,13 @@
 import Sprite from "./Sprite.js";
 
 export default class Cena { //é responsável por desenhar elementos na tela em uma animação
-    constructor(canvas, assets = null, mapa = null) {
+    constructor(canvas = null, assets = null, mapa = null) {
         this.canvas = canvas;
-        this.ctx = canvas.getContext("2d");
-        this.sprites = [];
-        this.aRemover = [];
-        this.t0 = null;
-        this.dt = 0;
-        this.idAnim = null;
-        this.assets = assets;
+        this.ctx = canvas?.getContext("2d");
         this.configuraMapa(mapa);
         this.game = null;
+        this.assets = assets;
+        this.preparar();
     }
     desenhar() {
         this.ctx.fillStyle = "lightblue";
@@ -49,16 +45,21 @@ export default class Cena { //é responsável por desenhar elementos na tela em 
         this.desenhar();
         this.checaColisao();
         this.removerSprites();
-
-        this.iniciar();
+        
+        if(this.rodando){
+            this.iniciar(); 
+        }
         this.t0 = t;
+
     }
     iniciar() {
+        this.rodando = true;
         this.idAnim = requestAnimationFrame(
             (t) => { this.quadro(t); }
         );
     }
     parar() {
+        this.rodando = false;
         cancelAnimationFrame(this.idAnim);
         this.t0 = null;
         this.dt = 0;
@@ -112,6 +113,15 @@ export default class Cena { //é responsável por desenhar elementos na tela em 
         });
         this.adicionar(en1);
         setTimeout(that.adicionaInimigo, 10000);
+    }
+
+    preparar(){
+        this.sprites = [];
+        this.aRemover = [];
+        this.t0 = null;
+        this.dt = 0;
+        this.idAnim = null;
+        this.rodando = true;
     }
 
 }
